@@ -118,9 +118,9 @@ export default function HomePage() {
   );
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[linear-gradient(170deg,#fffdf7_0%,#f8fff8_45%,#f4fbff_100%)] dark:bg-[linear-gradient(170deg,#061017_0%,#08141d_45%,#061018_100%)]">
-      <div className="pointer-events-none absolute -left-20 top-8 h-[460px] w-[460px] rounded-full bg-teal-300/20 blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 top-36 h-[420px] w-[420px] rounded-full bg-amber-300/25 blur-3xl" />
+    <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_12%_18%,rgba(34,211,238,0.2),transparent_30%),radial-gradient(circle_at_88%_14%,rgba(99,102,241,0.2),transparent_26%),linear-gradient(160deg,#030712_0%,#031325_45%,#020711_100%)] text-slate-100">
+      <div className="pointer-events-none absolute -left-20 top-8 h-[460px] w-[460px] rounded-full bg-cyan-400/20 blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 top-36 h-[420px] w-[420px] rounded-full bg-indigo-500/20 blur-3xl" />
       <MarketingHeader />
 
       <main>
@@ -133,7 +133,7 @@ export default function HomePage() {
               A Future-Ready
               <span className="block bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 bg-clip-text text-transparent">AI Learning Orbit for Every Child</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
               Conversational intelligence, emotional safety, and measurable growth in one voice-first ecosystem built for families who want depth, not screen addiction.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -141,7 +141,7 @@ export default function HomePage() {
               <Button asChild size="lg" variant="secondary"><Link href="/contact">Join Waitlist</Link></Button>
               <Button asChild size="lg" variant="secondary"><Link href="/investors">Book Early Access</Link></Button>
             </div>
-            <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Scroll to discover</p>
+            <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Scroll to discover</p>
           </motion.div>
 
           <motion.div
@@ -195,6 +195,14 @@ export default function HomePage() {
           </motion.div>
         </section>
 
+        <section className="mx-auto max-w-[1400px] overflow-hidden border-y border-white/10 py-4">
+          <motion.div className="flex min-w-max gap-3" animate={{ x: [0, -980] }} transition={{ repeat: Infinity, duration: 20, ease: "linear" }}>
+            {Array.from({ length: 2 }).flatMap((_, round) => ["VOICE FIRST", "SAFETY AI", "REAL TIME", "SCREEN FREE", "PARENT CONTROL", "TRUST LAYER"].map((tag) => (
+              <span key={`${tag}-${round}`} className="rounded-full border border-cyan-300/30 bg-cyan-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">{tag}</span>
+            )))}
+          </motion.div>
+        </section>
+
         <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-12 sm:px-6 sm:py-20">
           <h2 className="text-center text-4xl tracking-tight sm:text-5xl">Apple-style Product Reveal</h2>
           <p className="mx-auto mt-4 max-w-3xl text-center text-lg text-slate-600 dark:text-slate-300">Hardware built for modern homes, designed for child curiosity, engineered for trust.</p>
@@ -226,16 +234,19 @@ export default function HomePage() {
 
         <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-center text-4xl tracking-tight sm:text-5xl">How It Works</h2>
-          <StaggerReveal className="mt-10 grid gap-4 md:grid-cols-5">
+          <div className="mt-10 relative">
+            <div className="absolute left-4 top-0 h-full w-[2px] bg-gradient-to-b from-cyan-400 via-sky-500 to-indigo-500 md:left-1/2 md:-translate-x-1/2" />
+            <StaggerReveal className="space-y-8">
             {howItWorks.map((step, index) => (
               <StaggerItem key={step}>
-                <Card className="h-full p-5 text-center">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">Step {index + 1}</p>
-                  <p className="mt-3 text-sm font-semibold">{step}</p>
-                </Card>
+                <motion.div className={`relative ml-10 rounded-3xl border border-white/14 bg-slate-900/55 p-5 md:ml-0 md:w-[46%] ${index % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}`} whileInView={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: index % 2 === 0 ? -26 : 26 }} viewport={{ once: true }}>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">Step {index + 1}</p>
+                  <p className="mt-2 text-lg text-slate-100">{step}</p>
+                </motion.div>
               </StaggerItem>
             ))}
-          </StaggerReveal>
+            </StaggerReveal>
+          </div>
         </ScrollReveal>
 
         <ScrollReveal className="mx-auto grid max-w-[1240px] items-center gap-8 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-2">
@@ -244,7 +255,7 @@ export default function HomePage() {
           </div>
           <div>
             <h2 className="text-4xl tracking-tight sm:text-5xl">Screen-free Learning</h2>
-            <div className="mt-7 space-y-4 text-xl font-medium text-slate-700 dark:text-slate-200">
+            <div className="mt-7 space-y-4 text-xl font-medium text-slate-200">
               <p>No endless scrolling.</p>
               <p>No advertisements.</p>
               <p>No addictive feeds.</p>
@@ -280,29 +291,34 @@ export default function HomePage() {
         <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Parent Dashboard Preview</h2>
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            <Card className="lg:col-span-2 p-6">
+            <Card className="future-panel lg:col-span-2 p-6">
               <CardTitle className="text-lg">Weekly Intelligence Overview</CardTitle>
               <div className="mt-4 h-32 w-full rounded-2xl border border-white/40 bg-slate-50/70 p-2 dark:border-slate-700 dark:bg-slate-900/60">
                 <SectionScene variant="dashboard" />
               </div>
-              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 {["Today's Learning", "Learning Streak", "Vocabulary Growth", "Questions Asked", "Favorite Subjects", "Curiosity Index"].map((metric, index) => (
-                  <div key={metric} className="rounded-2xl bg-slate-100 p-3 dark:bg-slate-800">
-                    <p className="text-xs text-slate-500 dark:text-slate-400">{metric}</p>
-                    <motion.p initial={{ opacity: 0.5 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.05 }} className="mt-1 text-2xl font-semibold">{72 + index * 9}</motion.p>
+                  <div key={metric}>
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span>{metric}</span>
+                      <span>{72 + index * 9}%</span>
+                    </div>
+                    <div className="mt-2 h-2 rounded-full bg-slate-800">
+                      <motion.div className="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500" initial={{ width: 0 }} whileInView={{ width: `${72 + index * 4}%` }} viewport={{ once: true }} transition={{ duration: 0.8, delay: index * 0.05 }} />
+                    </div>
                   </div>
                 ))}
               </div>
-              <div className="mt-6 rounded-2xl bg-slate-100 p-4 dark:bg-slate-800">
+              <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900/55 p-4">
                 <p className="text-sm font-semibold">Recent Conversations</p>
-                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">&quot;Why does the moon change shape?&quot; • &quot;Can plants hear sounds?&quot; • &quot;Tell me a dinosaur bedtime story.&quot;</p>
+                <p className="mt-2 text-sm text-slate-300">&quot;Why does the moon change shape?&quot; • &quot;Can plants hear sounds?&quot; • &quot;Tell me a dinosaur bedtime story.&quot;</p>
               </div>
             </Card>
-            <Card className="p-6">
+            <Card className="future-panel p-6">
               <CardTitle>Safety Alerts</CardTitle>
               <div className="mt-4 space-y-3">
                 {["Sensitive topic review available", "Quiet hours override request", "New weekly report published", "Reading confidence improved 14%"].map((alert) => (
-                  <div key={alert} className="rounded-xl bg-white/80 p-3 text-sm dark:bg-slate-900/70">{alert}</div>
+                  <div key={alert} className="rounded-xl border border-white/10 bg-slate-900/65 p-3 text-sm text-slate-200">{alert}</div>
                 ))}
               </div>
             </Card>
@@ -348,9 +364,9 @@ export default function HomePage() {
             <Card className="future-panel p-6">
               <CardTitle>One Parent Account. Many Devices.</CardTitle>
               <CardDescription className="mt-3 leading-7">Main speaker, Teddy Bear, Robot, Night Lamp, Travel Device, Clock, and Desktop Speaker all sync under one learning profile architecture.</CardDescription>
-              <div className="mt-5 grid grid-cols-2 gap-2 text-sm">
+              <div className="mt-5 grid grid-cols-2 gap-2 text-sm text-slate-200">
                 {["Main Speaker", "Teddy Bear", "Robot", "Night Lamp", "Travel Device", "Clock", "Desktop Speaker"].map((node) => (
-                  <div key={node} className="rounded-lg bg-slate-100 px-3 py-2 dark:bg-slate-800">{node}</div>
+                  <motion.div key={node} className="rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2" whileHover={{ x: 3 }}>{node}</motion.div>
                 ))}
               </div>
             </Card>
@@ -388,16 +404,13 @@ export default function HomePage() {
         <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Marketplace</h2>
           <NeonFrameReveal className="mt-4 h-28 w-full p-2"><SectionScene variant="marketplace" /></NeonFrameReveal>
-          <StaggerReveal className="mt-8 grid gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {marketplace.map((item) => (
-              <StaggerItem key={item}>
-              <Card className="future-panel p-4">
-                <CardTitle className="text-base">{item}</CardTitle>
-                <CardDescription className="mt-2">Curated by education specialists and updated weekly.</CardDescription>
-              </Card>
-              </StaggerItem>
-            ))}
-          </StaggerReveal>
+          <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 py-3">
+            <motion.div className="flex min-w-max gap-3 px-3" animate={{ x: [0, -920] }} transition={{ repeat: Infinity, duration: 18, ease: "linear" }}>
+              {Array.from({ length: 3 }).flatMap((_, i) => marketplace.map((item) => (
+                <span key={`${item}-${i}`} className="rounded-full border border-cyan-300/35 bg-cyan-500/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200">{item}</span>
+              )))}
+            </motion.div>
+          </div>
         </ScrollReveal>
 
         <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
@@ -424,22 +437,19 @@ export default function HomePage() {
 
         <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Testimonials</h2>
-          <StaggerReveal className="mt-8 grid gap-4 lg:grid-cols-4">
-            {[
+          <motion.div className="mt-8 flex min-w-max gap-4" animate={{ x: [0, -980] }} transition={{ repeat: Infinity, duration: 24, ease: "linear" }}>
+            {Array.from({ length: 2 }).flatMap((_, block) => [
               "Homework stress dropped in two weeks. My child asks better questions now.",
-              "In class, vocabulary transfer from home sessions is obvious and measurable.",
-              "As a specialist, I love that safety and curiosity can coexist in one platform.",
-              "Homeschool planning became easier because daily summaries are accurate and actionable.",
-            ].map((quote, index) => (
-              <StaggerItem key={quote}>
-              <Card className="future-panel p-5">
-                <div className="mb-3 flex text-amber-500">{Array.from({ length: 5 }).map((_, i) => <Star key={`${quote}-${i}`} className="h-4 w-4 fill-current" />)}</div>
-                <p className="text-sm leading-6">{quote}</p>
-                <p className="mt-3 text-xs font-semibold text-slate-500">{["Parent", "Teacher", "Educational Specialist", "Homeschool Family"][index]}</p>
+              "Vocabulary transfer from home sessions is obvious in class.",
+              "Safety and curiosity can coexist in one platform.",
+              "Daily summaries became truly actionable.",
+            ].map((quote, idx) => (
+              <Card key={`${quote}-${block}-${idx}`} className="future-panel w-[300px] p-5">
+                <div className="mb-3 flex text-amber-400">{Array.from({ length: 5 }).map((__, i) => <Star key={`${quote}-${i}`} className="h-4 w-4 fill-current" />)}</div>
+                <p className="text-sm leading-7 text-slate-100">{quote}</p>
               </Card>
-              </StaggerItem>
-            ))}
-          </StaggerReveal>
+            )))}
+          </motion.div>
         </ScrollReveal>
 
         <ScrollReveal className="mx-auto max-w-[980px] px-4 py-14 sm:px-6 sm:py-20">
@@ -447,12 +457,12 @@ export default function HomePage() {
           <StaggerReveal className="mt-8 space-y-3">
             {faqs.map((item) => (
               <StaggerItem key={item.q}>
-              <details className="group rounded-2xl border border-white/60 bg-white/80 p-5 dark:border-slate-700 dark:bg-slate-900/80">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-semibold">
+              <details className="group rounded-2xl border border-white/14 bg-slate-900/55 p-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-semibold text-slate-100">
                   {item.q}
                   <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
                 </summary>
-                <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{item.a}</p>
+                <p className="mt-3 text-sm leading-7 text-slate-300">{item.a}</p>
               </details>
               </StaggerItem>
             ))}
