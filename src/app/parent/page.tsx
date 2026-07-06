@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function ParentIndexPage() {
-  redirect("/dashboard");
+  redirect("/parent/dashboard");
 }

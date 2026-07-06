@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useDashboard } from "@/hooks/use-dashboard";
 import { LearningChart } from "@/components/shared/learning-chart";
 import { PageHeader } from "@/components/shared/page-header";
+import { ScrollReveal, StaggerItem, StaggerReveal } from "@/components/shared/scroll-reveal";
 import { StatCard } from "@/components/shared/stat-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -41,11 +42,14 @@ export default function DashboardPage() {
         <StatCard label="Questions Asked" value={`${data.summary.questionsAsked}`} delta="Highly curious week" />
       </div>
 
-      <motion.div className="mt-4 grid gap-4 xl:grid-cols-3" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
+      <ScrollReveal className="mt-4 grid gap-4 xl:grid-cols-3" delay={0.08}>
         <Card className="ai-surface xl:col-span-2">
           <CardTitle>Weekly Learning Trend</CardTitle>
           <CardDescription className="mt-2">Score trajectory, curiosity, and participation.</CardDescription>
           <LearningChart />
+          <div className="mt-4 rounded-2xl bg-teal-50/70 p-4 text-sm dark:bg-teal-500/12">
+            Storyline: curiosity surged after Wednesday, suggesting story-led prompts and science quests are reinforcing recall.
+          </div>
         </Card>
 
         <Card className="ai-surface">
@@ -61,9 +65,9 @@ export default function DashboardPage() {
             <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Add the Ocean Ecosystems story pack for Aarav this week.</p>
           </div>
         </Card>
-      </motion.div>
+      </ScrollReveal>
 
-      <motion.div className="mt-4 grid gap-4 xl:grid-cols-2" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}>
+      <ScrollReveal className="mt-4 grid gap-4 xl:grid-cols-2" delay={0.14}>
         <Card className="ai-surface">
           <CardTitle>Monthly Summary</CardTitle>
           <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -82,7 +86,26 @@ export default function DashboardPage() {
             ))}
           </div>
         </Card>
-      </motion.div>
+      </ScrollReveal>
+
+      <ScrollReveal className="mt-4">
+        <Card className="ai-surface">
+          <CardTitle>Learning Narrative Timeline</CardTitle>
+          <CardDescription className="mt-2">A single weekly story for parent decision-making.</CardDescription>
+          <StaggerReveal className="mt-4 grid gap-3 md:grid-cols-4">
+            {[
+              "Mon-Tue: Vocabulary acceleration from guided stories.",
+              "Wed: Homework friction flagged in fraction sessions.",
+              "Thu-Fri: Confidence recovery after hint-based coaching.",
+              "Weekend: Peak curiosity and independent question bursts.",
+            ].map((insight) => (
+              <StaggerItem key={insight}>
+                <div className="rounded-2xl bg-white/80 p-4 text-sm dark:bg-slate-900/60">{insight}</div>
+              </StaggerItem>
+            ))}
+          </StaggerReveal>
+        </Card>
+      </ScrollReveal>
     </div>
   );
 }

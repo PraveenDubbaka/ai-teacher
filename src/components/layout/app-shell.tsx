@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { Bell, BookOpen, Bot, ClipboardCheck, CreditCard, HeartHandshake, House, LifeBuoy, Menu, MessageSquareText, Search, Settings, Shield, ShoppingBag, Smartphone, Sparkles, Users } from "lucide-react";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { parent } from "@/mock-data/data";
+import { dashboardSummary, parent, weeklyLearning } from "@/mock-data/data";
 import { cn } from "@/lib/utils";
 import { BrandLogo } from "@/components/shared/brand-logo";
 import { CommandPalette } from "@/components/shared/command-palette";
@@ -35,9 +35,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const title = useMemo(() => navItems.find((i) => pathname.startsWith(i.href))?.label ?? "Hey Teacher", [pathname]);
+  const weeklyPeak = useMemo(() => Math.max(...weeklyLearning.map((point) => point.score)), []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_right,_rgba(20,184,166,.18),_transparent_30%),radial-gradient(circle_at_bottom_left,_rgba(245,158,11,.15),_transparent_35%)] dark:bg-[radial-gradient(circle_at_top_right,_rgba(20,184,166,.15),_transparent_30%),radial-gradient(circle_at_bottom_left,_rgba(217,119,6,.12),_transparent_35%)]">
+    <div className="parent-console relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_right,_rgba(20,184,166,.18),_transparent_30%),radial-gradient(circle_at_bottom_left,_rgba(245,158,11,.15),_transparent_35%)] dark:bg-[radial-gradient(circle_at_top_right,_rgba(20,184,166,.15),_transparent_30%),radial-gradient(circle_at_bottom_left,_rgba(217,119,6,.12),_transparent_35%)]">
       <motion.div
         className="pointer-events-none absolute -left-20 top-12 h-72 w-72 rounded-full bg-teal-400/25 blur-3xl"
         animate={{ x: [0, 30, -10, 0], y: [0, 24, -12, 0] }}
@@ -137,12 +138,44 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
           <main className="flex-1 p-4 sm:p-6">
             <motion.div
+              className="mb-4 rounded-3xl border border-white/60 bg-white/75 p-4 shadow-sm backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/65"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <div className="flex flex-wrap items-center gap-2 text-xs">
+                <span className="rounded-full bg-teal-50 px-3 py-1.5 font-semibold text-teal-900 dark:bg-teal-500/15 dark:text-teal-200">
+                  Today: {dashboardSummary.todayLearningMinutes}m
+                </span>
+                <span className="rounded-full bg-sky-50 px-3 py-1.5 font-semibold text-sky-900 dark:bg-sky-500/15 dark:text-sky-200">
+                  Weekly peak score: {weeklyPeak}
+                </span>
+                <span className="rounded-full bg-amber-50 px-3 py-1.5 font-semibold text-amber-900 dark:bg-amber-500/15 dark:text-amber-200">
+                  Questions asked: {dashboardSummary.questionsAsked}
+                </span>
+              </div>
+              <p className="mt-2 text-xs text-slate-600 dark:text-slate-300">
+                Story this week: curiosity is trending upward, with stronger science retention and better bedtime focus.
+              </p>
+            </motion.div>
+            <motion.div
               key={pathname}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
             >
               {children}
+            </motion.div>
+            <motion.div
+              className="mt-5 rounded-3xl border border-white/60 bg-gradient-to-r from-white/75 via-teal-50/75 to-sky-50/70 p-4 dark:border-slate-700 dark:from-slate-900/65 dark:via-teal-500/10 dark:to-sky-500/10"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.32, ease: "easeOut", delay: 0.06 }}
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">Next Best Action</p>
+              <p className="mt-1 text-sm text-slate-700 dark:text-slate-200">
+                Keep momentum by scheduling a 15-minute science quest after homework. This pattern produced the highest retention this week.
+              </p>
             </motion.div>
           </main>
         </div>

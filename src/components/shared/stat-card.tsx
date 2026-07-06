@@ -16,7 +16,8 @@ export function StatCard({ label, value, delta }: StatCardProps) {
       whileHover={{ y: -3 }}
       transition={{ duration: 0.28, ease: "easeOut" }}
     >
-    <Card>
+    <Card className="relative overflow-hidden border-white/60 bg-white/80 dark:border-slate-700 dark:bg-slate-900/75">
+      <div className="pointer-events-none absolute -right-10 top-2 h-20 w-20 rounded-full bg-teal-300/30 blur-2xl" />
       <CardDescription>{label}</CardDescription>
       <CardTitle className="mt-2 text-3xl">{value}</CardTitle>
       {delta ? (

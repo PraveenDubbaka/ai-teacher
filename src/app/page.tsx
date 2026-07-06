@@ -1,12 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Mic, Shield, Sparkles, Star } from "lucide-react";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { MarketingHeader } from "@/components/marketing/marketing-header";
+import { SectionScene } from "@/components/marketing/section-scenes";
+import { ScrollReveal, StaggerItem, StaggerReveal } from "@/components/shared/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 
@@ -172,11 +173,14 @@ export default function HomePage() {
           </motion.div>
         </section>
 
-        <section className="mx-auto max-w-[1240px] px-4 py-12 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-12 sm:px-6 sm:py-20">
           <h2 className="text-center text-4xl tracking-tight sm:text-5xl">Apple-style Product Reveal</h2>
           <p className="mx-auto mt-4 max-w-3xl text-center text-lg text-slate-600 dark:text-slate-300">Hardware built for modern homes, designed for child curiosity, engineered for trust.</p>
           <div className="mt-12 grid items-center gap-7 lg:grid-cols-2">
             <motion.div className="relative h-[420px] rounded-[2.5rem] border border-white/60 bg-white/75 p-8 dark:border-slate-700 dark:bg-slate-900/70" animate={{ rotate: [0, 2, -2, 0] }} transition={{ duration: 10, repeat: Infinity }}>
+              <div className="absolute inset-5 opacity-40">
+                <SectionScene variant="product" />
+              </div>
               <div className="mx-auto h-full w-full max-w-[280px] rounded-[2rem] bg-gradient-to-b from-slate-300 to-slate-500 p-2 dark:from-slate-600 dark:to-slate-800">
                 <div className="flex h-full flex-col rounded-[1.7rem] bg-slate-900 p-5 text-white">
                   <div className="h-2 w-24 rounded-full bg-slate-500" />
@@ -196,25 +200,25 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-center text-4xl tracking-tight sm:text-5xl">How It Works</h2>
-          <div className="mt-10 grid gap-4 md:grid-cols-5">
+          <StaggerReveal className="mt-10 grid gap-4 md:grid-cols-5">
             {howItWorks.map((step, index) => (
-              <motion.div key={step} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.07 }}>
+              <StaggerItem key={step}>
                 <Card className="h-full p-5 text-center">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">Step {index + 1}</p>
                   <p className="mt-3 text-sm font-semibold">{step}</p>
                 </Card>
-              </motion.div>
+              </StaggerItem>
             ))}
-          </div>
-        </section>
+          </StaggerReveal>
+        </ScrollReveal>
 
-        <section className="mx-auto grid max-w-[1240px] items-center gap-8 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-2">
+        <ScrollReveal className="mx-auto grid max-w-[1240px] items-center gap-8 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-2">
           <div className="relative min-h-[380px] overflow-hidden rounded-[2.5rem] border border-white/60 bg-gradient-to-b from-amber-100 to-rose-100 p-8 dark:border-slate-700 dark:from-amber-900/30 dark:to-rose-900/20">
-            <Image src="/brand/ai-teacher-logo.svg?v=kid-v1" alt="Screen-free learning illustration" fill className="object-contain p-10 opacity-90" />
+            <SectionScene variant="screenfree" className="absolute inset-4" />
           </div>
           <div>
             <h2 className="text-4xl tracking-tight sm:text-5xl">Screen-free Learning</h2>
@@ -227,28 +231,38 @@ export default function HomePage() {
               <p>Just learning.</p>
             </div>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Family Scenarios</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="relative mt-8">
+            <div className="pointer-events-none absolute -top-20 right-0 h-40 w-72 opacity-65">
+              <SectionScene variant="scenarios" />
+            </div>
+            <StaggerReveal className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {scenarios.map((item, index) => (
-              <motion.div key={item.title} whileHover={{ y: -3 }} transition={{ duration: 0.2 }}>
+              <StaggerItem key={item.title}>
+              <motion.div whileHover={{ y: -3 }} transition={{ duration: 0.2 }}>
                 <Card className="h-full p-5">
                   <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500 to-sky-500 text-xl text-white">{index + 1}</div>
                   <CardTitle className="text-lg">{item.title}</CardTitle>
                   <CardDescription className="mt-3 leading-6">{item.text}</CardDescription>
                 </Card>
               </motion.div>
+              </StaggerItem>
             ))}
+            </StaggerReveal>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Parent Dashboard Preview</h2>
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
             <Card className="lg:col-span-2 p-6">
               <CardTitle className="text-lg">Weekly Intelligence Overview</CardTitle>
+              <div className="mt-4 h-32 w-full rounded-2xl border border-white/40 bg-slate-50/70 p-2 dark:border-slate-700 dark:bg-slate-900/60">
+                <SectionScene variant="dashboard" />
+              </div>
               <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {["Today's Learning", "Learning Streak", "Vocabulary Growth", "Questions Asked", "Favorite Subjects", "Curiosity Index"].map((metric, index) => (
                   <div key={metric} className="rounded-2xl bg-slate-100 p-3 dark:bg-slate-800">
@@ -271,10 +285,13 @@ export default function HomePage() {
               </div>
             </Card>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Learning Journey</h2>
+          <div className="mt-4 h-28 w-full rounded-2xl border border-white/50 bg-white/70 p-2 dark:border-slate-700 dark:bg-slate-900/65">
+            <SectionScene variant="journey" />
+          </div>
           <div className="mt-8 space-y-3">
             {journey.map((entry, index) => (
               <motion.div key={entry} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.04 }} className="flex items-center gap-4 rounded-2xl border border-white/55 bg-white/80 p-4 dark:border-slate-700 dark:bg-slate-900/75">
@@ -284,7 +301,7 @@ export default function HomePage() {
               </motion.div>
             ))}
           </div>
-        </section>
+        </ScrollReveal>
 
         <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">AI Personalities</h2>
@@ -327,8 +344,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Trust and Safety</h2>
+          <div className="mt-4 h-28 w-full rounded-2xl border border-white/50 bg-white/70 p-2 dark:border-slate-700 dark:bg-slate-900/65">
+            <SectionScene variant="safety" />
+          </div>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {trustSignals.map((signal) => (
               <Card key={signal} className="p-4">
@@ -337,10 +357,13 @@ export default function HomePage() {
               </Card>
             ))}
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Marketplace</h2>
+          <div className="mt-4 h-28 w-full rounded-2xl border border-white/50 bg-white/70 p-2 dark:border-slate-700 dark:bg-slate-900/65">
+            <SectionScene variant="marketplace" />
+          </div>
           <div className="mt-8 grid gap-4 md:grid-cols-3 lg:grid-cols-4">
             {marketplace.map((item) => (
               <Card key={item} className="p-4">
@@ -349,15 +372,18 @@ export default function HomePage() {
               </Card>
             ))}
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <h2 className="text-4xl tracking-tight sm:text-5xl">Subscriptions</h2>
             <div className="inline-flex rounded-full border border-slate-200 bg-white p-1 dark:border-slate-700 dark:bg-slate-900">
               <button className={`rounded-full px-4 py-1.5 text-sm ${billing === "monthly" ? "bg-teal-600 text-white" : "text-slate-600"}`} onClick={() => setBilling("monthly")}>Monthly</button>
               <button className={`rounded-full px-4 py-1.5 text-sm ${billing === "yearly" ? "bg-teal-600 text-white" : "text-slate-600"}`} onClick={() => setBilling("yearly")}>Yearly</button>
             </div>
+          </div>
+          <div className="mt-4 h-28 w-full rounded-2xl border border-white/50 bg-white/70 p-2 dark:border-slate-700 dark:bg-slate-900/65">
+            <SectionScene variant="pricing" />
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {pricing.map((plan) => (
@@ -368,7 +394,7 @@ export default function HomePage() {
               </Card>
             ))}
           </div>
-        </section>
+        </ScrollReveal>
 
         <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Testimonials</h2>
