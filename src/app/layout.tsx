@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { Manrope, Space_Grotesk, Geist } from "next/font/google";
+import { Manrope, Space_Grotesk } from "next/font/google";
 import { Providers } from "@/components/shared/providers";
 import "./globals.css";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -16,9 +13,16 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
+const basePath = process.env.BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   title: "Hey Teacher",
   description: "Voice-first AI education platform for modern families.",
+  icons: {
+    icon: `${basePath}/brand/ai-teacher-logo.svg`,
+    shortcut: `${basePath}/brand/ai-teacher-logo.svg`,
+    apple: `${basePath}/brand/ai-teacher-logo.svg`,
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={cn("h-full", "antialiased", manrope.variable, spaceGrotesk.variable, "font-sans", geist.variable)}>
+    <html lang="en" suppressHydrationWarning className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Providers>{children}</Providers>
       </body>
