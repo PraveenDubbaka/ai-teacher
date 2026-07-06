@@ -13,22 +13,22 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { href: "/dashboard", label: "Dashboard", icon: House },
-  { href: "/children", label: "Children", icon: Users },
-  { href: "/devices", label: "Devices", icon: Smartphone },
-  { href: "/learning", label: "Learning", icon: BookOpen },
-  { href: "/reports", label: "Reports", icon: Sparkles },
-  { href: "/safety", label: "Safety", icon: Shield },
-  { href: "/conversation-history", label: "Conversations", icon: MessageSquareText },
-  { href: "/parent-controls", label: "Parent Controls", icon: ClipboardCheck },
-  { href: "/homework", label: "Homework", icon: BookOpen },
-  { href: "/stories", label: "Stories", icon: Sparkles },
-  { href: "/marketplace", label: "Marketplace", icon: ShoppingBag },
-  { href: "/subscriptions", label: "Subscriptions", icon: Bot },
-  { href: "/billing", label: "Billing", icon: CreditCard },
-  { href: "/family", label: "Family", icon: HeartHandshake },
-  { href: "/settings", label: "Settings", icon: Settings },
-  { href: "/support", label: "Support", icon: LifeBuoy },
+  { href: "/parent/dashboard", label: "Dashboard", icon: House },
+  { href: "/parent/children", label: "Children", icon: Users },
+  { href: "/parent/devices", label: "Devices", icon: Smartphone },
+  { href: "/parent/learning", label: "Learning", icon: BookOpen },
+  { href: "/parent/reports", label: "Reports", icon: Sparkles },
+  { href: "/parent/safety", label: "Safety", icon: Shield },
+  { href: "/parent/conversation-history", label: "Conversations", icon: MessageSquareText },
+  { href: "/parent/parent-controls", label: "Parent Controls", icon: ClipboardCheck },
+  { href: "/parent/homework", label: "Homework", icon: BookOpen },
+  { href: "/parent/stories", label: "Stories", icon: Sparkles },
+  { href: "/parent/marketplace", label: "Marketplace", icon: ShoppingBag },
+  { href: "/parent/subscriptions", label: "Subscriptions", icon: Bot },
+  { href: "/parent/billing", label: "Billing", icon: CreditCard },
+  { href: "/parent/family", label: "Family", icon: HeartHandshake },
+  { href: "/parent/settings", label: "Settings", icon: Settings },
+  { href: "/parent/support", label: "Support", icon: LifeBuoy },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -52,7 +52,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <aside className="hidden w-72 shrink-0 border-r border-white/40 bg-white/60 p-5 backdrop-blur-xl lg:block dark:border-slate-800 dark:bg-slate-950/70">
           <div className="mb-8 rounded-2xl bg-slate-900 px-4 py-3 text-white dark:bg-slate-100 dark:text-slate-900">
             <BrandLogo
-              href="/dashboard"
+              href="/parent/dashboard"
               showTagline={false}
               titleClassName="text-lg"
               className="[&_p]:text-white dark:[&_p]:text-slate-900"

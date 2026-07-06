@@ -51,10 +51,10 @@ export default function DashboardPage() {
         <Card className="ai-surface">
           <CardTitle>Quick Actions</CardTitle>
           <div className="mt-4 grid gap-2">
-            <Button asChild variant="secondary"><Link href="/devices">Run device diagnostics</Link></Button>
-            <Button asChild variant="secondary"><Link href="/parent-controls">Adjust learning hours</Link></Button>
-            <Button asChild variant="secondary"><Link href="/conversation-history">Review transcript queue</Link></Button>
-            <Button asChild variant="secondary"><Link href="/reports">Export monthly report</Link></Button>
+            <Button asChild variant="secondary"><Link href="/parent/devices">Run device diagnostics</Link></Button>
+            <Button asChild variant="secondary"><Link href="/parent/parent-controls">Adjust learning hours</Link></Button>
+            <Button asChild variant="secondary"><Link href="/parent/conversation-history">Review transcript queue</Link></Button>
+            <Button asChild variant="secondary"><Link href="/parent/reports">Export monthly report</Link></Button>
           </div>
           <div className="mt-5 rounded-2xl bg-slate-100 p-4 dark:bg-slate-800">
             <p className="flex items-center gap-2 text-sm font-medium"><Calendar className="h-4 w-4" />Upcoming recommendation</p>
