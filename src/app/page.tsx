@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown, Mic, Shield, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Atom, BrainCircuit, ChevronDown, Compass, FlaskConical, Languages, Mic, Music4, Rocket, Shield, Sparkles, Star, type LucideIcon } from "lucide-react";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { SectionScene } from "@/components/marketing/section-scenes";
@@ -11,7 +11,15 @@ import { NeonFrameReveal, ScrollReveal, StaggerItem, StaggerReveal } from "@/com
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 
-const heroIcons = ["Planet", "Book", "Rocket", "Microscope", "Alphabet", "Math", "Music"];
+const heroNodes: { label: string; icon: LucideIcon; ring: string }[] = [
+  { label: "Space", icon: Rocket, ring: "from-cyan-400 to-sky-500" },
+  { label: "Language", icon: Languages, ring: "from-teal-400 to-emerald-500" },
+  { label: "Science", icon: FlaskConical, ring: "from-fuchsia-400 to-indigo-500" },
+  { label: "Logic", icon: BrainCircuit, ring: "from-amber-400 to-orange-500" },
+  { label: "Discovery", icon: Compass, ring: "from-violet-400 to-sky-500" },
+  { label: "STEM", icon: Atom, ring: "from-cyan-300 to-blue-500" },
+  { label: "Creativity", icon: Music4, ring: "from-rose-400 to-pink-500" },
+];
 
 const howItWorks = [
   "Child says 'Hey Teacher'",
@@ -118,18 +126,22 @@ export default function HomePage() {
       <main>
         <section className="mx-auto grid max-w-[1240px] items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-2">
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
-            <p className="inline-flex items-center gap-2 rounded-full bg-teal-100 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-teal-900 dark:bg-teal-600/20 dark:text-teal-200">
-              <Sparkles className="h-4 w-4" /> Voice-First Educational Hardware Platform
+            <p className="inline-flex items-center gap-2 rounded-full border border-cyan-300/50 bg-cyan-100/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-900 dark:bg-cyan-500/10 dark:text-cyan-200">
+              <Sparkles className="h-4 w-4" /> Voice Infrastructure for Childhood Intelligence
             </p>
-            <h1 className="mt-6 text-5xl leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">The AI Teacher Every Child Deserves</h1>
-            <p className="mt-6 max-w-2xl text-lg text-slate-600 dark:text-slate-300">
-              A screen-free AI learning companion that answers questions, teaches new skills, tells stories, and grows with your child while giving parents complete visibility and control.
+            <h1 className="mt-6 text-5xl leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl">
+              A Future-Ready
+              <span className="block bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 bg-clip-text text-transparent">AI Learning Orbit for Every Child</span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+              Conversational intelligence, emotional safety, and measurable growth in one voice-first ecosystem built for families who want depth, not screen addiction.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Button asChild size="lg"><Link href="/technology">Watch Demo</Link></Button>
               <Button asChild size="lg" variant="secondary"><Link href="/contact">Join Waitlist</Link></Button>
               <Button asChild size="lg" variant="secondary"><Link href="/investors">Book Early Access</Link></Button>
             </div>
+            <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Scroll to discover</p>
           </motion.div>
 
           <motion.div
@@ -138,7 +150,7 @@ export default function HomePage() {
             transition={{ duration: 0.5, delay: 0.08 }}
             className="relative"
           >
-            <div className="future-panel relative mx-auto aspect-[4/5] w-full max-w-[520px] rounded-[3rem] p-8 backdrop-blur-xl">
+            <div className="future-panel hero-mesh relative mx-auto aspect-[4/5] w-full max-w-[520px] rounded-[3rem] p-8 backdrop-blur-xl">
               <div className="future-orb left-6 top-6 h-8 w-8" />
               <div className="future-orb right-10 top-20 h-10 w-10" style={{ animationDelay: "1.3s" }} />
               <div className="future-orb bottom-12 left-14 h-6 w-6" style={{ animationDelay: "0.8s" }} />
@@ -162,15 +174,22 @@ export default function HomePage() {
                 <div className="rounded-xl bg-amber-50 px-2 py-2 dark:bg-amber-500/15">8h Battery</div>
               </div>
             </div>
-            {heroIcons.map((item, index) => (
+            {heroNodes.map((node, index) => (
               <motion.div
-                key={item}
-                className="absolute rounded-full border border-white/70 bg-white/85 px-3 py-1.5 text-xs font-semibold shadow-sm dark:border-slate-700 dark:bg-slate-900/85"
+                key={node.label}
+                className="absolute"
                 style={{ left: `${8 + (index % 3) * 30}%`, top: `${5 + Math.floor(index / 3) * 27}%` }}
-                animate={{ y: [0, -12, 0] }}
+                animate={{ y: [0, -14, 0], rotate: [0, 6, 0, -6, 0] }}
                 transition={{ duration: 2.6 + index * 0.15, repeat: Infinity }}
               >
-                {item}
+                <div className="group relative">
+                  <div className={`flex h-11 w-11 items-center justify-center rounded-full border border-white/55 bg-gradient-to-br ${node.ring} text-white shadow-lg dark:border-slate-700`}>
+                    <node.icon className="h-5 w-5" />
+                  </div>
+                  <div className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 rounded-full bg-slate-900/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white opacity-0 transition-opacity group-hover:opacity-100">
+                    {node.label}
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
