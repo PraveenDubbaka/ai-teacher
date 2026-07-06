@@ -5,6 +5,7 @@ import { CheckCircle2, Mic, Shield, Sparkles, ToyBrick } from "lucide-react";
 import { motion } from "framer-motion";
 import { DeviceHeroVideoPlayer } from "@/components/shared/device-hero-video-player";
 import { DeviceWorkflowSection } from "@/components/shared/device-workflow-section";
+import { BrandLogo } from "@/components/shared/brand-logo";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 
@@ -44,10 +45,7 @@ export default function Home() {
         transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
       />
       <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-5 sm:px-6">
-        <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-teal-700 dark:text-teal-300">Voice-First Education</p>
-          <p className="text-xl font-semibold">Hey Teacher</p>
-        </div>
+        <BrandLogo href="/" />
         <div className="flex items-center gap-2">
           <Button asChild variant="secondary"><Link href="/auth/login">Sign in</Link></Button>
           <Button asChild><Link href="/auth/signup">Get Started</Link></Button>

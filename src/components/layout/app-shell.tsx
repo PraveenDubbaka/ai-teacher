@@ -7,6 +7,7 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { parent } from "@/mock-data/data";
 import { cn } from "@/lib/utils";
+import { BrandLogo } from "@/components/shared/brand-logo";
 import { CommandPalette } from "@/components/shared/command-palette";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -49,10 +50,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       />
       <div className="mx-auto flex min-h-screen max-w-[1600px]">
         <aside className="hidden w-72 shrink-0 border-r border-white/40 bg-white/60 p-5 backdrop-blur-xl lg:block dark:border-slate-800 dark:bg-slate-950/70">
-          <Link href="/dashboard" className="mb-8 block rounded-2xl bg-slate-900 px-4 py-3 text-white dark:bg-slate-100 dark:text-slate-900">
-            <p className="text-xs uppercase tracking-[0.2em] text-teal-300 dark:text-teal-600">Voice First Learning</p>
-            <p className="text-lg font-semibold">Hey Teacher</p>
-          </Link>
+          <div className="mb-8 rounded-2xl bg-slate-900 px-4 py-3 text-white dark:bg-slate-100 dark:text-slate-900">
+            <BrandLogo
+              href="/dashboard"
+              showTagline={false}
+              titleClassName="text-lg"
+              className="[&_p]:text-white dark:[&_p]:text-slate-900"
+            />
+            <p className="mt-1 text-xs uppercase tracking-[0.2em] text-teal-300 dark:text-teal-600">Voice First Learning</p>
+          </div>
           <nav className="space-y-1">
             {navItems.map((item) => {
               const active = pathname.startsWith(item.href);
