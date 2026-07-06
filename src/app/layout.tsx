@@ -14,14 +14,15 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 const basePath = process.env.BASE_PATH ?? "";
+const logoVersion = "kid-v1";
 
 export const metadata: Metadata = {
   title: "Hey Teacher",
   description: "Voice-first AI education platform for modern families.",
   icons: {
-    icon: `${basePath}/brand/ai-teacher-logo.svg`,
-    shortcut: `${basePath}/brand/ai-teacher-logo.svg`,
-    apple: `${basePath}/brand/ai-teacher-logo.svg`,
+    icon: `${basePath}/brand/ai-teacher-logo.svg?v=${logoVersion}`,
+    shortcut: `${basePath}/brand/ai-teacher-logo.svg?v=${logoVersion}`,
+    apple: `${basePath}/brand/ai-teacher-logo.svg?v=${logoVersion}`,
   },
 };
 

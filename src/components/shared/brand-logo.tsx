@@ -19,6 +19,7 @@ export function BrandLogo({
   showTagline = true,
   titleClassName,
 }: BrandLogoProps) {
+  const logoVersion = "kid-v1";
   const pathname = usePathname();
   const [basePath, setBasePath] = useState("");
 
@@ -28,7 +29,7 @@ export function BrandLogo({
     setBasePath(firstSegment === "ai-teacher" ? "/ai-teacher" : "");
   }, [pathname]);
 
-  const logoSrc = `${basePath}/brand/ai-teacher-logo.svg`;
+  const logoSrc = `${basePath}/brand/ai-teacher-logo.svg?v=${logoVersion}`;
 
   const content = (
     <div className={cn("inline-flex items-center gap-3", className)}>
