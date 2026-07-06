@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 type BrandLogoProps = {
@@ -19,8 +20,14 @@ export function BrandLogo({
   titleClassName,
 }: BrandLogoProps) {
   const pathname = usePathname();
-  const firstSegment = pathname.split("/").filter(Boolean)[0];
-  const basePath = firstSegment === "ai-teacher" ? "/ai-teacher" : "";
+  const [basePath, setBasePath] = useState("");
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    const firstSegment = path.split("/").filter(Boolean)[0];
+    setBasePath(firstSegment === "ai-teacher" ? "/ai-teacher" : "");
+  }, [pathname]);
+
   const logoSrc = `${basePath}/brand/ai-teacher-logo.svg`;
 
   const content = (
