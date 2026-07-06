@@ -17,25 +17,34 @@ function formatTime(value: number) {
 }
 
 export function DeviceHeroVideoPlayer() {
+  const heroVideoSrc = HERO_VIDEO_SRC;
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [videoAvailable, setVideoAvailable] = useState(false);
-  const hasConfiguredVideo = Boolean(HERO_VIDEO_SRC);
+  const hasConfiguredVideo = Boolean(heroVideoSrc);
 
   useEffect(() => {
     let ignore = false;
 
-    if (!hasConfiguredVideo || !HERO_VIDEO_SRC) {
+    if (!hasConfiguredVideo || !heroVideoSrc) {
       setVideoAvailable(false);
       return;
     }
 
     async function checkVideo() {
+      const src = heroVideoSrc;
+      if (!src) {
+        if (!ignore) {
+          setVideoAvailable(false);
+        }
+        return;
+      }
+
       try {
-        const response = await fetch(HERO_VIDEO_SRC, { method: "HEAD" });
+        const response = await fetch(src, { method: "HEAD" });
         const contentType = response.headers.get("content-type") ?? "";
         if (!ignore) {
           setVideoAvailable(response.ok && contentType.includes("video"));
@@ -52,7 +61,7 @@ export function DeviceHeroVideoPlayer() {
     return () => {
       ignore = true;
     };
-  }, [hasConfiguredVideo]);
+  }, [hasConfiguredVideo, heroVideoSrc]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -69,7 +78,7 @@ export function DeviceHeroVideoPlayer() {
     }
   }, [playing, muted, videoAvailable]);
 
-  if (!videoAvailable || !HERO_VIDEO_SRC) {
+  if (!videoAvailable || !heroVideoSrc) {
     return <DeviceHeroVideoBanner />;
   }
 
@@ -99,7 +108,7 @@ export function DeviceHeroVideoPlayer() {
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
         >
-          <source src={HERO_VIDEO_SRC} type="video/mp4" />
+          <source src={heroVideoSrc} type="video/mp4" />
         </video>
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent" />
