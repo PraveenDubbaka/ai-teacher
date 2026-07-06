@@ -7,7 +7,7 @@ import { ArrowRight, ChevronDown, Mic, Shield, Sparkles, Star } from "lucide-rea
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { SectionScene } from "@/components/marketing/section-scenes";
-import { ScrollReveal, StaggerItem, StaggerReveal } from "@/components/shared/scroll-reveal";
+import { NeonFrameReveal, ScrollReveal, StaggerItem, StaggerReveal } from "@/components/shared/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 
@@ -138,7 +138,10 @@ export default function HomePage() {
             transition={{ duration: 0.5, delay: 0.08 }}
             className="relative"
           >
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-[520px] rounded-[3rem] border border-white/70 bg-gradient-to-b from-white/90 to-white/60 p-8 shadow-[0_45px_90px_-50px_rgba(15,23,42,0.65)] backdrop-blur-xl dark:border-slate-700 dark:from-slate-900/85 dark:to-slate-900/55">
+            <div className="future-panel relative mx-auto aspect-[4/5] w-full max-w-[520px] rounded-[3rem] p-8 backdrop-blur-xl">
+              <div className="future-orb left-6 top-6 h-8 w-8" />
+              <div className="future-orb right-10 top-20 h-10 w-10" style={{ animationDelay: "1.3s" }} />
+              <div className="future-orb bottom-12 left-14 h-6 w-6" style={{ animationDelay: "0.8s" }} />
               <motion.div className="absolute left-1/2 top-8 h-3 w-40 -translate-x-1/2 rounded-full bg-slate-300/80 dark:bg-slate-700" />
               <motion.div
                 animate={{ boxShadow: ["0 0 0 0 rgba(20,184,166,0.25)", "0 0 0 22px rgba(20,184,166,0)"] }}
@@ -303,24 +306,27 @@ export default function HomePage() {
           </div>
         </ScrollReveal>
 
-        <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">AI Personalities</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <StaggerReveal className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {personalities.map((profile) => (
-              <Card key={profile.name} className="p-5">
+              <StaggerItem key={profile.name}>
+              <Card className="future-panel p-5">
                 <CardTitle className="text-lg">{profile.name}</CardTitle>
                 <CardDescription className="mt-2">Teaching style: {profile.style}</CardDescription>
                 <p className="mt-2 text-sm font-medium text-slate-600 dark:text-slate-300">Recommended age: {profile.age}</p>
                 <Button variant="secondary" size="sm" className="mt-4">Voice Preview</Button>
               </Card>
+              </StaggerItem>
             ))}
-          </div>
-        </section>
+          </StaggerReveal>
+        </ScrollReveal>
 
-        <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Device Ecosystem</h2>
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
-            <Card className="p-6">
+          <StaggerReveal className="mt-8 grid gap-4 lg:grid-cols-2">
+            <StaggerItem>
+            <Card className="future-panel p-6">
               <CardTitle>One Parent Account. Many Devices.</CardTitle>
               <CardDescription className="mt-3 leading-7">Main speaker, Teddy Bear, Robot, Night Lamp, Travel Device, Clock, and Desktop Speaker all sync under one learning profile architecture.</CardDescription>
               <div className="mt-5 grid grid-cols-2 gap-2 text-sm">
@@ -329,7 +335,9 @@ export default function HomePage() {
                 ))}
               </div>
             </Card>
-            <Card className="p-6">
+            </StaggerItem>
+            <StaggerItem>
+            <Card className="future-panel p-6">
               <CardTitle>Architecture Diagram</CardTitle>
               <div className="mt-5 space-y-2 text-sm">
                 <div className="rounded-lg bg-teal-100 px-3 py-2 dark:bg-teal-600/20">Child Voice Input</div>
@@ -341,17 +349,16 @@ export default function HomePage() {
                 <div className="rounded-lg bg-emerald-100 px-3 py-2 dark:bg-emerald-600/20">Parent Dashboard + Weekly Insights</div>
               </div>
             </Card>
-          </div>
-        </section>
+            </StaggerItem>
+          </StaggerReveal>
+        </ScrollReveal>
 
         <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Trust and Safety</h2>
-          <div className="mt-4 h-28 w-full rounded-2xl border border-white/50 bg-white/70 p-2 dark:border-slate-700 dark:bg-slate-900/65">
-            <SectionScene variant="safety" />
-          </div>
+          <NeonFrameReveal className="mt-4 h-28 w-full p-2"><SectionScene variant="safety" /></NeonFrameReveal>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {trustSignals.map((signal) => (
-              <Card key={signal} className="p-4">
+              <Card key={signal} className="future-panel p-4">
                 <CardTitle className="flex items-center gap-2"><Shield className="h-4 w-4 text-teal-600" />{signal}</CardTitle>
                 <CardDescription className="mt-2">Built as a default behavior in product design, policy enforcement, and parent controls.</CardDescription>
               </Card>
@@ -361,17 +368,17 @@ export default function HomePage() {
 
         <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Marketplace</h2>
-          <div className="mt-4 h-28 w-full rounded-2xl border border-white/50 bg-white/70 p-2 dark:border-slate-700 dark:bg-slate-900/65">
-            <SectionScene variant="marketplace" />
-          </div>
-          <div className="mt-8 grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+          <NeonFrameReveal className="mt-4 h-28 w-full p-2"><SectionScene variant="marketplace" /></NeonFrameReveal>
+          <StaggerReveal className="mt-8 grid gap-4 md:grid-cols-3 lg:grid-cols-4">
             {marketplace.map((item) => (
-              <Card key={item} className="p-4">
+              <StaggerItem key={item}>
+              <Card className="future-panel p-4">
                 <CardTitle className="text-base">{item}</CardTitle>
                 <CardDescription className="mt-2">Curated by education specialists and updated weekly.</CardDescription>
               </Card>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerReveal>
         </ScrollReveal>
 
         <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
@@ -382,52 +389,56 @@ export default function HomePage() {
               <button className={`rounded-full px-4 py-1.5 text-sm ${billing === "yearly" ? "bg-teal-600 text-white" : "text-slate-600"}`} onClick={() => setBilling("yearly")}>Yearly</button>
             </div>
           </div>
-          <div className="mt-4 h-28 w-full rounded-2xl border border-white/50 bg-white/70 p-2 dark:border-slate-700 dark:bg-slate-900/65">
-            <SectionScene variant="pricing" />
-          </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <NeonFrameReveal className="mt-4 h-28 w-full p-2"><SectionScene variant="pricing" /></NeonFrameReveal>
+          <StaggerReveal className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {pricing.map((plan) => (
-              <Card key={plan.name} className={`p-6 ${plan.name === "Premium" ? "border-teal-500 ring-2 ring-teal-500/40" : ""}`}>
+              <StaggerItem key={plan.name}>
+              <Card className={`future-panel p-6 ${plan.name === "Premium" ? "border-teal-500 ring-2 ring-teal-500/40" : ""}`}>
                 <CardTitle className="text-xl">{plan.name}</CardTitle>
                 <p className="mt-2 text-4xl font-semibold">{plan.price}</p>
                 <CardDescription className="mt-2">{plan.tag}</CardDescription>
               </Card>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerReveal>
         </ScrollReveal>
 
-        <section className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Testimonials</h2>
-          <div className="mt-8 grid gap-4 lg:grid-cols-4">
+          <StaggerReveal className="mt-8 grid gap-4 lg:grid-cols-4">
             {[
               "Homework stress dropped in two weeks. My child asks better questions now.",
               "In class, vocabulary transfer from home sessions is obvious and measurable.",
               "As a specialist, I love that safety and curiosity can coexist in one platform.",
               "Homeschool planning became easier because daily summaries are accurate and actionable.",
             ].map((quote, index) => (
-              <Card key={quote} className="p-5">
+              <StaggerItem key={quote}>
+              <Card className="future-panel p-5">
                 <div className="mb-3 flex text-amber-500">{Array.from({ length: 5 }).map((_, i) => <Star key={`${quote}-${i}`} className="h-4 w-4 fill-current" />)}</div>
                 <p className="text-sm leading-6">{quote}</p>
                 <p className="mt-3 text-xs font-semibold text-slate-500">{["Parent", "Teacher", "Educational Specialist", "Homeschool Family"][index]}</p>
               </Card>
+              </StaggerItem>
             ))}
-          </div>
-        </section>
+          </StaggerReveal>
+        </ScrollReveal>
 
-        <section className="mx-auto max-w-[980px] px-4 py-14 sm:px-6 sm:py-20">
+        <ScrollReveal className="mx-auto max-w-[980px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-center text-4xl tracking-tight sm:text-5xl">FAQ</h2>
-          <div className="mt-8 space-y-3">
+          <StaggerReveal className="mt-8 space-y-3">
             {faqs.map((item) => (
-              <details key={item.q} className="group rounded-2xl border border-white/60 bg-white/80 p-5 dark:border-slate-700 dark:bg-slate-900/80">
+              <StaggerItem key={item.q}>
+              <details className="group rounded-2xl border border-white/60 bg-white/80 p-5 dark:border-slate-700 dark:bg-slate-900/80">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-semibold">
                   {item.q}
                   <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
                 </summary>
                 <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{item.a}</p>
               </details>
+              </StaggerItem>
             ))}
-          </div>
-        </section>
+          </StaggerReveal>
+        </ScrollReveal>
 
         <section className="mx-auto max-w-[1240px] px-4 pb-16 sm:px-6 sm:pb-24">
           <Card className="relative overflow-hidden rounded-[2.5rem] border border-teal-300/50 bg-gradient-to-r from-teal-600 via-sky-600 to-indigo-600 p-10 text-white">
