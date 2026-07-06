@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { ArrowRight, Atom, BrainCircuit, ChevronDown, Compass, FlaskConical, Languages, Mic, Music4, Rocket, Shield, Sparkles, Star, type LucideIcon } from "lucide-react";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { MarketingHeader } from "@/components/marketing/marketing-header";
@@ -105,6 +105,7 @@ const faqs = [
 
 export default function HomePage() {
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
+  const { scrollYProgress } = useScroll();
   const pricing = useMemo(
     () => [
       { name: "Free", price: billing === "monthly" ? "$0" : "$0", tag: "Try voice learning basics" },
@@ -119,6 +120,8 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_12%_18%,rgba(34,211,238,0.2),transparent_30%),radial-gradient(circle_at_88%_14%,rgba(99,102,241,0.2),transparent_26%),linear-gradient(160deg,#030712_0%,#031325_45%,#020711_100%)] text-slate-100">
+      <motion.div className="fixed left-0 right-0 top-0 z-[70] h-[3px] origin-left bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-500" style={{ scaleX: scrollYProgress }} />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "repeating-linear-gradient(180deg, rgba(148,163,184,0.45) 0px, rgba(148,163,184,0.45) 1px, transparent 1px, transparent 7px)" }} />
       <div className="pointer-events-none absolute -left-20 top-8 h-[460px] w-[460px] rounded-full bg-cyan-400/20 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 top-36 h-[420px] w-[420px] rounded-full bg-indigo-500/20 blur-3xl" />
       <MarketingHeader />
@@ -151,6 +154,21 @@ export default function HomePage() {
             className="relative"
           >
             <div className="future-panel hero-mesh relative mx-auto aspect-[4/5] w-full max-w-[520px] rounded-[3rem] p-8 backdrop-blur-xl">
+              <motion.div
+                className="pointer-events-none absolute inset-9 rounded-full border border-cyan-300/25"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div
+                className="pointer-events-none absolute inset-14 rounded-full border border-dashed border-indigo-300/35"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div
+                className="pointer-events-none absolute left-1/2 top-12 h-48 w-[2px] -translate-x-1/2 bg-gradient-to-b from-cyan-300/80 via-sky-400/20 to-transparent"
+                animate={{ opacity: [0.25, 1, 0.25], scaleY: [0.85, 1.05, 0.85] }}
+                transition={{ duration: 2.6, repeat: Infinity }}
+              />
               <div className="future-orb left-6 top-6 h-8 w-8" />
               <div className="future-orb right-10 top-20 h-10 w-10" style={{ animationDelay: "1.3s" }} />
               <div className="future-orb bottom-12 left-14 h-6 w-6" style={{ animationDelay: "0.8s" }} />
@@ -236,10 +254,21 @@ export default function HomePage() {
           <h2 className="text-center text-4xl tracking-tight sm:text-5xl">How It Works</h2>
           <div className="mt-10 relative">
             <div className="absolute left-4 top-0 h-full w-[2px] bg-gradient-to-b from-cyan-400 via-sky-500 to-indigo-500 md:left-1/2 md:-translate-x-1/2" />
+            <motion.div
+              className="absolute left-4 top-0 h-4 w-4 -translate-x-[7px] rounded-full bg-cyan-300 shadow-[0_0_26px_rgba(34,211,238,0.9)] md:left-1/2 md:-translate-x-1/2"
+              animate={{ y: [0, 460, 0] }}
+              transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
+            />
             <StaggerReveal className="space-y-8">
             {howItWorks.map((step, index) => (
               <StaggerItem key={step}>
                 <motion.div className={`relative ml-10 rounded-3xl border border-white/14 bg-slate-900/55 p-5 md:ml-0 md:w-[46%] ${index % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}`} whileInView={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: index % 2 === 0 ? -26 : 26 }} viewport={{ once: true }}>
+                  <motion.div
+                    className="pointer-events-none absolute inset-0 rounded-3xl"
+                    animate={{ opacity: [0.1, 0.3, 0.1] }}
+                    transition={{ duration: 2.2 + index * 0.22, repeat: Infinity }}
+                    style={{ background: "linear-gradient(120deg, rgba(34,211,238,0.16), transparent 38%, rgba(99,102,241,0.16))" }}
+                  />
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">Step {index + 1}</p>
                   <p className="mt-2 text-lg text-slate-100">{step}</p>
                 </motion.div>
@@ -275,11 +304,17 @@ export default function HomePage() {
             <StaggerReveal className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {scenarios.map((item, index) => (
               <StaggerItem key={item.title}>
-              <motion.div whileHover={{ y: -3 }} transition={{ duration: 0.2 }}>
+              <motion.div whileHover={{ y: -6, scale: 1.01 }} transition={{ duration: 0.22 }}>
                 <Card className="h-full p-5">
                   <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500 to-sky-500 text-xl text-white">{index + 1}</div>
                   <CardTitle className="text-lg">{item.title}</CardTitle>
                   <CardDescription className="mt-3 leading-6">{item.text}</CardDescription>
+                  <motion.div
+                    className="mt-4 h-1 rounded-full bg-gradient-to-r from-cyan-400/25 via-sky-400 to-indigo-500/25"
+                    animate={{ backgroundPositionX: ["0%", "100%", "0%"] }}
+                    transition={{ duration: 3 + index * 0.25, repeat: Infinity, ease: "linear" }}
+                    style={{ backgroundSize: "180% 100%" }}
+                  />
                 </Card>
               </motion.div>
               </StaggerItem>
@@ -295,6 +330,19 @@ export default function HomePage() {
               <CardTitle className="text-lg">Weekly Intelligence Overview</CardTitle>
               <div className="mt-4 h-32 w-full rounded-2xl border border-white/40 bg-slate-50/70 p-2 dark:border-slate-700 dark:bg-slate-900/60">
                 <SectionScene variant="dashboard" />
+              </div>
+              <div className="mt-5 rounded-2xl border border-white/12 bg-slate-900/55 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-300">Live voice activity</p>
+                <div className="mt-4 flex h-16 items-end gap-1.5">
+                  {Array.from({ length: 26 }).map((_, i) => (
+                    <motion.div
+                      key={`eq-${i}`}
+                      className="w-2 rounded-t bg-gradient-to-t from-cyan-500 to-indigo-500"
+                      animate={{ height: [16, 44, 24, 54, 20] }}
+                      transition={{ duration: 1.3 + (i % 6) * 0.12, repeat: Infinity, ease: "easeInOut", delay: i * 0.03 }}
+                    />
+                  ))}
+                </div>
               </div>
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 {["Today's Learning", "Learning Streak", "Vocabulary Growth", "Questions Asked", "Favorite Subjects", "Curiosity Index"].map((metric, index) => (
@@ -393,10 +441,12 @@ export default function HomePage() {
           <NeonFrameReveal className="mt-4 h-28 w-full p-2"><SectionScene variant="safety" /></NeonFrameReveal>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {trustSignals.map((signal) => (
-              <Card key={signal} className="future-panel p-4">
+              <motion.div key={signal} whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
+              <Card className="future-panel p-4">
                 <CardTitle className="flex items-center gap-2"><Shield className="h-4 w-4 text-teal-600" />{signal}</CardTitle>
                 <CardDescription className="mt-2">Built as a default behavior in product design, policy enforcement, and parent controls.</CardDescription>
               </Card>
+              </motion.div>
             ))}
           </div>
         </ScrollReveal>
@@ -437,7 +487,7 @@ export default function HomePage() {
 
         <ScrollReveal className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="text-4xl tracking-tight sm:text-5xl">Testimonials</h2>
-          <motion.div className="mt-8 flex min-w-max gap-4" animate={{ x: [0, -980] }} transition={{ repeat: Infinity, duration: 24, ease: "linear" }}>
+          <motion.div className="mt-8 flex min-w-max gap-4" animate={{ x: [0, -980] }} transition={{ repeat: Infinity, duration: 22, ease: "linear" }}>
             {Array.from({ length: 2 }).flatMap((_, block) => [
               "Homework stress dropped in two weeks. My child asks better questions now.",
               "Vocabulary transfer from home sessions is obvious in class.",
@@ -447,6 +497,14 @@ export default function HomePage() {
               <Card key={`${quote}-${block}-${idx}`} className="future-panel w-[300px] p-5">
                 <div className="mb-3 flex text-amber-400">{Array.from({ length: 5 }).map((__, i) => <Star key={`${quote}-${i}`} className="h-4 w-4 fill-current" />)}</div>
                 <p className="text-sm leading-7 text-slate-100">{quote}</p>
+              </Card>
+            )))}
+          </motion.div>
+          <motion.div className="mt-3 flex min-w-max gap-4" animate={{ x: [-980, 0] }} transition={{ repeat: Infinity, duration: 26, ease: "linear" }}>
+            {Array.from({ length: 2 }).flatMap((_, block) => ["Parent confidence rose after one week of insight summaries.", "The bedtime routine became calmer and more educational.", "My child now explains concepts back with clarity.", "The platform feels safe enough to trust daily."].map((quote, idx) => (
+              <Card key={`${quote}-${block}-${idx}`} className="future-panel w-[260px] p-4">
+                <p className="text-xs uppercase tracking-[0.12em] text-cyan-300">Family signal</p>
+                <p className="mt-2 text-sm leading-6 text-slate-100">{quote}</p>
               </Card>
             )))}
           </motion.div>
