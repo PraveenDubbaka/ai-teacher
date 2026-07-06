@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hey Teacher Prototype
 
-## Getting Started
+Investor-ready, production-style prototype for a voice-first AI education platform.
 
-First, run the development server:
+Children interact only with physical AI speakers/toys using the wake word "Hey Teacher".
+Parents use this web console to manage learning, safety, devices, subscriptions, and family controls.
+
+## Stack
+
+- Next.js 15 + React 19 + TypeScript
+- Tailwind CSS + shadcn/ui style primitives
+- Framer Motion
+- React Hook Form + Zod
+- TanStack Query + TanStack Table
+- Recharts
+- NextAuth (mock credentials)
+- Fully mock JSON data
+
+## Product Areas Included
+
+- Landing, Authentication, Onboarding
+- Dashboard
+- Children
+- Devices + 10-step Add Device flow
+- Learning Analytics
+- Reports
+- Safety Center
+- Conversation History
+- Parent Controls
+- Homework Center
+- Story Library
+- Marketplace
+- Subscriptions
+- Billing
+- Family
+- Settings
+- Support
+
+## Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## GitHub Pages Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This project is configured to deploy to GitHub Pages using GitHub Actions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Files added for deployment:
+- `.github/workflows/deploy-pages.yml`
+- `public/.nojekyll`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+How it works:
+1. Push to `main`.
+2. GitHub Action builds with static export mode (`GITHUB_PAGES=true`).
+3. The `out/` directory is deployed to GitHub Pages.
 
-## Deploy on Vercel
+The workflow auto-detects repository type:
+- `username.github.io` repo -> root deploy (`/`)
+- any other repo -> subpath deploy (`/repo-name`)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Important note
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+GitHub Pages is static hosting, so server routes (like NextAuth API routes) are not deployed.
+
+## Hero Video Configuration
+
+By default, the landing page uses the animated demo banner fallback.
+
+To enable real MP4 hero playback, set this environment variable:
+
+```bash
+NEXT_PUBLIC_HERO_VIDEO_SRC=/videos/hey-teacher-device-demo.mp4
+```
+
+Then place the MP4 file at:
+
+`public/videos/hey-teacher-device-demo.mp4`
