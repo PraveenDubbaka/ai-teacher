@@ -119,18 +119,7 @@ export default function HomePage() {
         <section className="relative">
           <RobotHero
             backgroundText="HEY TEACHER"
-            navItemsLeft={[
-              { label: "Product", href: "/technology" },
-              { label: "About", href: "/about" },
-              { label: "Specs", href: "/devices" },
-              { label: "Reviews", href: "/parents" },
-            ]}
-            contactText="Contact"
-            contactHref="/contact"
-            ctaText="Book Demo"
-            onCtaClick={() => {
-              window.location.href = "/contact";
-            }}
+            showNavbar={false}
           />
 
           <div className="pointer-events-none absolute inset-0 z-40 flex items-center">

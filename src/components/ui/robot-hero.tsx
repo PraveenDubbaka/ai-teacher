@@ -446,6 +446,7 @@ export interface RobotHeroProps {
   contactTarget?: string;
   ctaText?: string;
   onCtaClick?: () => void;
+  showNavbar?: boolean;
 }
 
 function AntennaNavbar({
@@ -540,6 +541,7 @@ export function RobotHero({
   contactTarget,
   ctaText = "Buy Now",
   onCtaClick,
+  showNavbar = true,
 }: RobotHeroProps = {}) {
   const containerRef = useRef<HTMLElement>(null);
 
@@ -584,7 +586,9 @@ export function RobotHero({
       </div>
 
       <div className="pointer-events-none absolute inset-0 z-20 flex flex-col">
-        <AntennaNavbar leftItems={navItemsLeft} contactText={contactText} contactHref={contactHref} contactTarget={contactTarget} ctaText={ctaText} onCtaClick={onCtaClick} />
+        {showNavbar ? (
+          <AntennaNavbar leftItems={navItemsLeft} contactText={contactText} contactHref={contactHref} contactTarget={contactTarget} ctaText={ctaText} onCtaClick={onCtaClick} />
+        ) : null}
 
         <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-8">
           <div className="mt-auto flex w-full items-end justify-between pb-12"></div>
