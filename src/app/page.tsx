@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown, Shield, Star } from "lucide-react";
+import { ArrowRight, ChevronDown, Shield, Sparkles, Star } from "lucide-react";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { SectionScene } from "@/components/marketing/section-scenes";
 import { NeonFrameReveal, ScrollReveal, StaggerItem, StaggerReveal } from "@/components/shared/scroll-reveal";
 import { Button } from "@/components/ui/button";
@@ -112,23 +113,49 @@ export default function HomePage() {
       <div className="pointer-events-none absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "repeating-linear-gradient(180deg, rgba(148,163,184,0.45) 0px, rgba(148,163,184,0.45) 1px, transparent 1px, transparent 7px)" }} />
       <div className="pointer-events-none absolute -left-20 top-8 h-[460px] w-[460px] rounded-full bg-cyan-400/20 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 top-36 h-[420px] w-[420px] rounded-full bg-indigo-500/20 blur-3xl" />
+      <MarketingHeader />
 
       <main>
-        <RobotHero
-          backgroundText="HEY TEACHER"
-          navItemsLeft={[
-            { label: "Product", href: "/technology" },
-            { label: "About", href: "/about" },
-            { label: "Specs", href: "/devices" },
-            { label: "Reviews", href: "/parents" },
-          ]}
-          contactText="Contact"
-          contactHref="/contact"
-          ctaText="Book Demo"
-          onCtaClick={() => {
-            window.location.href = "/contact";
-          }}
-        />
+        <section className="relative">
+          <RobotHero
+            backgroundText="HEY TEACHER"
+            navItemsLeft={[
+              { label: "Product", href: "/technology" },
+              { label: "About", href: "/about" },
+              { label: "Specs", href: "/devices" },
+              { label: "Reviews", href: "/parents" },
+            ]}
+            contactText="Contact"
+            contactHref="/contact"
+            ctaText="Book Demo"
+            onCtaClick={() => {
+              window.location.href = "/contact";
+            }}
+          />
+
+          <div className="pointer-events-none absolute inset-0 z-40 flex items-center">
+            <div className="mx-auto w-full max-w-[1240px] px-4 sm:px-6">
+              <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="max-w-[760px]">
+                <p className="inline-flex items-center gap-2 rounded-full border border-cyan-300/50 bg-cyan-100/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-900 dark:bg-cyan-500/10 dark:text-cyan-200">
+                  <Sparkles className="h-4 w-4" /> Voice Infrastructure for Childhood Intelligence
+                </p>
+                <h1 className="mt-6 text-5xl leading-[0.98] tracking-tight text-slate-100 sm:text-6xl lg:text-7xl">
+                  A Future-Ready
+                  <span className="block bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 bg-clip-text text-transparent">AI Learning Orbit for Every Child</span>
+                </h1>
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">
+                  Conversational intelligence, emotional safety, and measurable growth in one voice-first ecosystem built for families who want depth, not screen addiction.
+                </p>
+                <div className="pointer-events-auto mt-8 flex flex-wrap items-center gap-3">
+                  <Button asChild size="lg"><Link href="/technology">Watch Demo</Link></Button>
+                  <Button asChild size="lg" variant="secondary"><Link href="/contact">Join Waitlist</Link></Button>
+                  <Button asChild size="lg" variant="secondary"><Link href="/investors">Book Early Access</Link></Button>
+                </div>
+                <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">Scroll to discover</p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
 
         <section className="mx-auto max-w-[1400px] overflow-hidden border-y border-white/10 py-4">
           <motion.div className="flex min-w-max gap-3" animate={{ x: [0, -980] }} transition={{ repeat: Infinity, duration: 20, ease: "linear" }}>
