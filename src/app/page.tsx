@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { motion, useScroll } from "framer-motion";
-import { ArrowRight, Atom, BrainCircuit, ChevronDown, Compass, FlaskConical, Languages, Mic, Music4, Rocket, Shield, Sparkles, Star, type LucideIcon } from "lucide-react";
+import { ArrowRight, Atom, BrainCircuit, ChevronDown, Compass, FlaskConical, Languages, Music4, Rocket, Shield, Sparkles, Star, type LucideIcon } from "lucide-react";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { MarketingHeader } from "@/components/marketing/marketing-header";
 import { SectionScene } from "@/components/marketing/section-scenes";
@@ -127,17 +127,17 @@ export default function HomePage() {
       <MarketingHeader />
 
       <main>
-        <section className="mx-auto grid max-w-[1240px] items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-2">
-          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
+        <section className="relative mx-auto grid max-w-[1240px] items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr]">
+          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="relative z-10">
             <p className="inline-flex items-center gap-2 rounded-full border border-cyan-300/50 bg-cyan-100/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-900 dark:bg-cyan-500/10 dark:text-cyan-200">
               <Sparkles className="h-4 w-4" /> Voice Infrastructure for Childhood Intelligence
             </p>
-            <h1 className="mt-6 text-5xl leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl">
-              A Future-Ready
-              <span className="block bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 bg-clip-text text-transparent">AI Learning Orbit for Every Child</span>
+            <h1 className="mt-6 text-5xl leading-[0.96] tracking-tight sm:text-6xl lg:text-7xl">
+              A Robot-Led
+              <span className="block bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 bg-clip-text text-transparent">Learning Companion With Liquid Motion</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              Conversational intelligence, emotional safety, and measurable growth in one voice-first ecosystem built for families who want depth, not screen addiction.
+              Conversational intelligence, emotional safety, and measurable growth in one voice-first ecosystem built around a robot hero and an immersive shader-driven atmosphere.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Button asChild size="lg"><Link href="/technology">Watch Demo</Link></Button>
@@ -148,68 +148,176 @@ export default function HomePage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.08 }}
+            initial={{ opacity: 0, scale: 0.94, x: 30 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.08 }}
             className="relative"
           >
-            <div className="future-panel hero-mesh relative mx-auto aspect-[4/5] w-full max-w-[520px] rounded-[3rem] p-8 backdrop-blur-xl">
+            <div className="future-panel hero-mesh relative mx-auto aspect-[4/5] w-full max-w-[560px] overflow-hidden rounded-[3rem] p-5 backdrop-blur-xl">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(34,211,238,0.38),transparent_26%),radial-gradient(circle_at_82%_12%,rgba(99,102,241,0.34),transparent_30%),radial-gradient(circle_at_52%_78%,rgba(14,165,233,0.28),transparent_34%),linear-gradient(135deg,rgba(3,7,18,0.92),rgba(8,15,31,0.75))]" />
               <motion.div
-                className="pointer-events-none absolute inset-9 rounded-full border border-cyan-300/25"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div
-                className="pointer-events-none absolute inset-14 rounded-full border border-dashed border-indigo-300/35"
-                animate={{ rotate: -360 }}
+                className="absolute inset-0 opacity-90"
+                animate={{ backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"] }}
                 transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle at 20% 20%, rgba(34,211,238,0.42) 0%, transparent 18%), radial-gradient(circle at 70% 30%, rgba(59,130,246,0.36) 0%, transparent 20%), radial-gradient(circle at 50% 80%, rgba(99,102,241,0.28) 0%, transparent 24%), linear-gradient(120deg, rgba(15,23,42,0.08), rgba(148,163,184,0.02), rgba(15,23,42,0.08))",
+                  backgroundSize: "200% 200%",
+                }}
               />
               <motion.div
-                className="pointer-events-none absolute left-1/2 top-12 h-48 w-[2px] -translate-x-1/2 bg-gradient-to-b from-cyan-300/80 via-sky-400/20 to-transparent"
-                animate={{ opacity: [0.25, 1, 0.25], scaleY: [0.85, 1.05, 0.85] }}
-                transition={{ duration: 2.6, repeat: Infinity }}
+                className="absolute inset-0 opacity-70"
+                animate={{ x: [0, -28, 0], y: [0, 16, 0] }}
+                transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+                style={{
+                  backgroundImage:
+                    "linear-gradient(transparent 0, transparent 92%, rgba(255,255,255,0.08) 92%, rgba(255,255,255,0.08) 100%), linear-gradient(90deg, transparent 0, transparent 94%, rgba(255,255,255,0.05) 94%, rgba(255,255,255,0.05) 100%)",
+                  backgroundSize: "28px 28px",
+                }}
               />
-              <div className="future-orb left-6 top-6 h-8 w-8" />
-              <div className="future-orb right-10 top-20 h-10 w-10" style={{ animationDelay: "1.3s" }} />
-              <div className="future-orb bottom-12 left-14 h-6 w-6" style={{ animationDelay: "0.8s" }} />
-              <motion.div className="absolute left-1/2 top-8 h-3 w-40 -translate-x-1/2 rounded-full bg-slate-300/80 dark:bg-slate-700" />
               <motion.div
-                animate={{ boxShadow: ["0 0 0 0 rgba(20,184,166,0.25)", "0 0 0 22px rgba(20,184,166,0)"] }}
-                transition={{ repeat: Infinity, duration: 2.2 }}
-                className="mx-auto mt-14 h-56 w-56 rounded-full bg-gradient-to-br from-teal-500 via-sky-500 to-amber-400 p-2"
-              >
-                <div className="flex h-full w-full items-center justify-center rounded-full bg-slate-950/85 text-white">
-                  <Mic className="h-14 w-14" />
+                className="pointer-events-none absolute left-6 top-8 h-24 w-24 rounded-full bg-cyan-300/20 blur-2xl"
+                animate={{ scale: [1, 1.35, 1], opacity: [0.35, 0.9, 0.35] }}
+                transition={{ duration: 4.8, repeat: Infinity }}
+              />
+              <motion.div
+                className="pointer-events-none absolute right-8 top-16 h-28 w-28 rounded-full bg-indigo-400/20 blur-2xl"
+                animate={{ scale: [1.2, 1, 1.2], opacity: [0.25, 0.75, 0.25] }}
+                transition={{ duration: 5.5, repeat: Infinity }}
+              />
+
+              <div className="relative z-10 flex h-full flex-col justify-between rounded-[2.6rem] border border-white/10 bg-slate-950/20 p-5">
+                <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-100/80">
+                  <span>Liquid Shader Core</span>
+                  <span>Robot Hero Interface</span>
                 </div>
-              </motion.div>
-              <div className="mt-8 rounded-3xl bg-white/85 p-4 dark:bg-slate-950/70">
-                <p className="text-sm font-semibold">Hey Teacher Smart Speaker</p>
-                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Premium fabric finish, adaptive LED ring, far-field mic array, and privacy switch.</p>
+
+                <div className="relative mt-2 flex flex-1 items-center justify-center">
+                  <motion.div
+                    className="absolute inset-x-8 top-10 h-44 rounded-full bg-cyan-400/10 blur-3xl"
+                    animate={{ opacity: [0.25, 0.85, 0.25], scaleX: [0.9, 1.08, 0.9] }}
+                    transition={{ duration: 3.8, repeat: Infinity }}
+                  />
+
+                  <motion.div
+                    className="absolute inset-y-10 left-1/2 w-[2px] -translate-x-1/2 bg-gradient-to-b from-cyan-300/80 via-sky-400/10 to-transparent"
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{ duration: 2.8, repeat: Infinity }}
+                  />
+
+                  <motion.div
+                    className="absolute left-[18%] top-[26%] h-3 w-3 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(125,211,252,0.95)]"
+                    animate={{ y: [-6, 6, -6] }}
+                    transition={{ duration: 2.2, repeat: Infinity }}
+                  />
+                  <motion.div
+                    className="absolute right-[18%] top-[22%] h-3 w-3 rounded-full bg-indigo-200 shadow-[0_0_18px_rgba(165,180,252,0.95)]"
+                    animate={{ y: [6, -6, 6] }}
+                    transition={{ duration: 2.4, repeat: Infinity }}
+                  />
+
+                  <motion.div
+                    className="relative"
+                    animate={{ y: [0, -10, 0], rotate: [0, 0.5, 0, -0.5, 0] }}
+                    transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <div className="relative mx-auto flex h-[350px] w-[280px] items-center justify-center">
+                      <motion.div
+                        className="absolute inset-x-4 top-10 h-16 rounded-full bg-gradient-to-r from-cyan-300/25 via-sky-300/20 to-indigo-300/25 blur-2xl"
+                        animate={{ opacity: [0.25, 0.8, 0.25] }}
+                        transition={{ duration: 2.6, repeat: Infinity }}
+                      />
+                      <div className="absolute inset-x-8 top-12 rounded-[2.5rem] border border-cyan-300/30 bg-slate-950/35 p-4 shadow-[0_0_40px_rgba(34,211,238,0.12)] backdrop-blur-md">
+                        <div className="mx-auto flex h-24 w-36 items-center justify-center rounded-[2rem] border border-white/12 bg-[radial-gradient(circle_at_50%_30%,rgba(34,211,238,0.36),rgba(8,15,31,0.92)_70%)]">
+                          <div className="flex gap-4">
+                            <motion.div
+                              className="h-6 w-6 rounded-full bg-cyan-200 shadow-[0_0_24px_rgba(34,211,238,0.9)]"
+                              animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+                              transition={{ duration: 1.8, repeat: Infinity }}
+                            />
+                            <motion.div
+                              className="h-6 w-6 rounded-full bg-indigo-200 shadow-[0_0_24px_rgba(129,140,248,0.9)]"
+                              animate={{ scale: [1.2, 1, 1.2], opacity: [1, 0.65, 1] }}
+                              transition={{ duration: 1.8, repeat: Infinity }}
+                            />
+                          </div>
+                        </div>
+                        <div className="mt-3 flex items-center justify-between text-[10px] uppercase tracking-[0.14em] text-cyan-100/70">
+                          <span>Sensor Eyes</span>
+                          <span>Adaptive Focus</span>
+                        </div>
+                      </div>
+
+                      <div className="absolute inset-x-10 top-44 h-28 rounded-[2.2rem] border border-white/12 bg-[linear-gradient(180deg,rgba(15,23,42,0.9),rgba(2,6,23,0.95))]">
+                        <motion.div
+                          className="absolute inset-x-4 top-4 h-2 rounded-full bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400"
+                          animate={{ opacity: [0.2, 1, 0.2], scaleX: [0.8, 1.02, 0.8] }}
+                          transition={{ duration: 2.1, repeat: Infinity }}
+                        />
+                        <div className="absolute inset-x-6 bottom-4 grid grid-cols-3 gap-2 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-200">
+                          <div className="rounded-xl bg-cyan-500/10 px-2 py-2">Voice</div>
+                          <div className="rounded-xl bg-sky-500/10 px-2 py-2">Safety</div>
+                          <div className="rounded-xl bg-indigo-500/10 px-2 py-2">Learning</div>
+                        </div>
+                      </div>
+
+                      <div className="absolute bottom-16 left-1/2 h-28 w-56 -translate-x-1/2 rounded-[2rem] border border-white/12 bg-gradient-to-b from-slate-900/70 to-slate-950/95 p-4">
+                        <div className="mx-auto h-2 w-28 rounded-full bg-cyan-300/80" />
+                        <div className="mt-4 grid grid-cols-2 gap-3">
+                          <motion.div className="h-14 rounded-2xl bg-white/5" animate={{ opacity: [0.4, 0.8, 0.4] }} transition={{ duration: 2.2, repeat: Infinity }} />
+                          <motion.div className="h-14 rounded-2xl bg-white/5" animate={{ opacity: [0.7, 0.3, 0.7] }} transition={{ duration: 2.2, repeat: Infinity }} />
+                        </div>
+                      </div>
+
+                      <div className="absolute bottom-6 left-1/2 h-10 w-[220px] -translate-x-1/2 rounded-full bg-cyan-400/15 blur-xl" />
+                    </div>
+                  </motion.div>
+                </div>
+
+                <div className="relative grid gap-3 sm:grid-cols-[1.2fr_0.8fr]">
+                  <div className="rounded-3xl border border-white/10 bg-slate-950/55 p-4">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-200">Interactive shader layer</p>
+                    <div className="mt-3 flex h-16 items-end gap-1.5">
+                      {Array.from({ length: 18 }).map((_, index) => (
+                        <motion.div
+                          key={`hero-bar-${index}`}
+                          className="w-full rounded-t bg-gradient-to-t from-cyan-400 via-sky-400 to-indigo-400"
+                          animate={{ height: [10, 34, 16, 44, 12] }}
+                          transition={{ duration: 1.1 + (index % 4) * 0.12, repeat: Infinity, ease: "easeInOut", delay: index * 0.03 }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="rounded-3xl border border-white/10 bg-slate-950/55 p-4">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-200">Robot states</p>
+                    <div className="mt-3 space-y-2 text-xs text-slate-200">
+                      <motion.div className="rounded-2xl bg-cyan-500/10 px-3 py-2" animate={{ x: [0, 6, 0] }} transition={{ duration: 2.1, repeat: Infinity }}>Listening</motion.div>
+                      <motion.div className="rounded-2xl bg-sky-500/10 px-3 py-2" animate={{ x: [4, 0, 4] }} transition={{ duration: 2.4, repeat: Infinity }}>Reasoning</motion.div>
+                      <motion.div className="rounded-2xl bg-indigo-500/10 px-3 py-2" animate={{ x: [0, -4, 0] }} transition={{ duration: 2.2, repeat: Infinity }}>Teaching</motion.div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="mt-5 grid grid-cols-3 gap-2 text-center text-xs font-medium text-slate-600 dark:text-slate-300">
-                <div className="rounded-xl bg-teal-50 px-2 py-2 dark:bg-teal-500/15">USB-C</div>
-                <div className="rounded-xl bg-sky-50 px-2 py-2 dark:bg-sky-500/15">WiFi + BT</div>
-                <div className="rounded-xl bg-amber-50 px-2 py-2 dark:bg-amber-500/15">8h Battery</div>
-              </div>
+
+              {heroNodes.map((node, index) => (
+                <motion.div
+                  key={node.label}
+                  className="absolute"
+                  style={{ left: `${8 + (index % 3) * 30}%`, top: `${5 + Math.floor(index / 3) * 27}%` }}
+                  animate={{ y: [0, -14, 0], rotate: [0, 6, 0, -6, 0] }}
+                  transition={{ duration: 2.6 + index * 0.15, repeat: Infinity }}
+                >
+                  <div className="group relative">
+                    <div className={`flex h-11 w-11 items-center justify-center rounded-full border border-white/55 bg-gradient-to-br ${node.ring} text-white shadow-lg dark:border-slate-700`}>
+                      <node.icon className="h-5 w-5" />
+                    </div>
+                    <div className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 rounded-full bg-slate-900/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white opacity-0 transition-opacity group-hover:opacity-100">
+                      {node.label}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-            {heroNodes.map((node, index) => (
-              <motion.div
-                key={node.label}
-                className="absolute"
-                style={{ left: `${8 + (index % 3) * 30}%`, top: `${5 + Math.floor(index / 3) * 27}%` }}
-                animate={{ y: [0, -14, 0], rotate: [0, 6, 0, -6, 0] }}
-                transition={{ duration: 2.6 + index * 0.15, repeat: Infinity }}
-              >
-                <div className="group relative">
-                  <div className={`flex h-11 w-11 items-center justify-center rounded-full border border-white/55 bg-gradient-to-br ${node.ring} text-white shadow-lg dark:border-slate-700`}>
-                    <node.icon className="h-5 w-5" />
-                  </div>
-                  <div className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 rounded-full bg-slate-900/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white opacity-0 transition-opacity group-hover:opacity-100">
-                    {node.label}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
           </motion.div>
         </section>
 
